@@ -3,14 +3,14 @@ package decorator;
 import state.*;
 import factory.*;
 
-public class PoisonedWeapon extends WeaponDecorator {
+public class PoisonedWeapon extends EquipmentDecorator {
 
-    public PoisonedWeapon(Weapon decoratedWeapon) {
+    public PoisonedWeapon(BasicEquipment decoratedWeapon) {
         super(decoratedWeapon);
     }
 
     public void use(Entity target) {
-        System.out.println("Envenenando el arma.");
+        System.out.println("Adding poison to the weapon.");
         EntityState poisonedState = new PoisonedState();
         target.setCurrentState(poisonedState);
         target.applyEffect();
@@ -18,6 +18,10 @@ public class PoisonedWeapon extends WeaponDecorator {
     }
 
     private void addPoison() {
-        System.out.println("El arma destella con un verde brillante.");
+        System.out.println(decoratedWeapon.getName() + " glows a vibrant green.");
+    }
+
+    public String getName() {
+        return decoratedWeapon.getName();
     }
 }

@@ -12,7 +12,7 @@ public class EnhancedDamageDecorator extends ActionDecorator {
 
     @Override
     public void action(Entity target) {
-        System.out.println("Aumentando el daño del ataque.");
+        System.out.println("Increasing the attack value.");
         super.action(target);
     }
 }

@@ -5,20 +5,24 @@ import factory.*;
 /* Decorador Concreto de Decorator: Define funcionalidades adicionales que se pueden añadir
  * dinámicamente a las weapons. 
  */
-public class EnchantedWeapon extends WeaponDecorator {
+public class EnchantedWeapon extends EquipmentDecorator {
 
-    public EnchantedWeapon(Weapon decoratedWeapon) {
+    public EnchantedWeapon(Equipment decoratedWeapon) {
         super(decoratedWeapon);
     }
 
     @Override
     public void use(Entity target) {
-        System.out.println("Encantando el arma.");
+        System.out.println("Enchanting the weapon.");
         super.use(target);
     }
 
     private void addEnchantment() {
-        System.out.println("El arma brila con una mística aura.");
+        System.out.println("The weapon glows with a mystical aura.");
+    }
+
+    public String getName() {
+        return decoratedWeapon.getName();
     }
     
 }
