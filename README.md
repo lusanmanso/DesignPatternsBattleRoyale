@@ -1,5 +1,4 @@
 # DesignPatternsCombatGame
-# Design Patterns Combat Game
 #####Lucia Sánchez Manso, Olivia Troitiño Frydrych, Claudia Gascó Miranda
 ##1. Descripción
 Este proyecto ha tenido como objetivo desarrollar un videojuego exclusivamente en lenguaje Java, donde un personaje personalizado por el jugador combate con un sistema de turnos en un mundo contra enemigos procedentes de estos. El jugador puede optar después de cada mundo por mejorar su equipamiento o aumentar la cantidad de puntos obtenida. Cuanto mejor sea el puntaje obtenido por el jugador, mejor será el resultado general de la partida.
