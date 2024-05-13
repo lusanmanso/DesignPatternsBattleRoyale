@@ -8,6 +8,7 @@ import state.*;
 
 import strategy.*;
 import factory.*;
+import java.util.ArrayList; // Import the ArrayList class
 
 public class EnemyManager {
     private World currentWorld;
@@ -22,8 +23,7 @@ public class EnemyManager {
     }
 
     public List<Enemy> spawnEnemies(World currentWorld, int nEnemies) {
-        // Obtain the current world if not provided
-        List<Enemy> newEnemies = new ArrayList<>();
+       //  List<Enemy> newEnemies = new ArrayList<>();
         if (currentWorld == null) {
             System.out.println("A valid world has not been provided for generating enemies.");
             return null;
@@ -115,7 +115,6 @@ public class EnemyManager {
 
         return !remainingEnemies.isEmpty();
     }
-
  
     // Otros métodos de la clase...
 
@@ -159,7 +158,7 @@ public class EnemyManager {
         if (currentEnemy != null && enemyStrategy != null) {
             // Apply state effect based on enemy attack
 
-            int damage = calculateDamage();
+            // int damage = calculateDamage();
            // entityState.applyEffect(target, damage);
             
             enemyStrategy.action(target); // Acción atada a al estrategia            
@@ -167,10 +166,6 @@ public class EnemyManager {
         } else {
             System.out.println("No current enemy or enemy strategy set.");
         }
-    }
-
-    private int calculateDamage() {
-        return 0; // Placeholder value
     }
 
 }

@@ -1,15 +1,16 @@
 package factory.enemies;
 
 import factory.Enemy;
-import factory.Entity;
 import strategy.*;
 
+// Daemon.java
 public abstract class Daemon extends Enemy {
-    private static final int DEFAULT_ATK = 60;
-    private static final double DEFAULT_DEF = 30; // Tiene mejor ataque. Peor defensa
-    
+    private static final int DEFAULT_ATK = 70;
+    private static final int DEFAULT_HP = 40;
+    private static final double DEFAULT_DEF = 40;
+
     public Daemon(String name, EnemyStrategy enemyStrategy){
-        this(DEFAULT_ATK, Entity.DEFAULT_HP, DEFAULT_DEF, name, enemyStrategy);
+        this(DEFAULT_ATK, DEFAULT_HP, DEFAULT_DEF, name, enemyStrategy);
     }
 
     public Daemon(int ATK, int HP, double DEF, String name, EnemyStrategy enemyStrategy){

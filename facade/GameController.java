@@ -5,15 +5,17 @@ import java.util.List;
 
 import extra.*;
 import singleton.*;
+import factory.*;
+
 public class GameController {
-    private PlayerInput playerInput;
+    private PlayerManager playerInput;
     private WorldManager worldManager;
     private EnemyManager enemyManager;
 
     public GameController() {
         this.worldManager = WorldManager.getInstance();
         this.enemyManager = new EnemyManager(worldManager.getCurrentWorld());
-        this.playerInput = new PlayerInput(enemyManager);
+        this.playerInput = new PlayerManager(enemyManager);
     }
 
     public void startGame() {
@@ -31,15 +33,20 @@ public class GameController {
     
             // Generate enemies for the current world
             enemyManager.spawnEnemies(world,2);
-    
-            
+
             while (playerInput.getPlayer().getHP() > 0 && enemyManager.areEnemiesRemaining()) {
                 playerInput.actionMenu();
+
+                for (Enemy enemy : remainingEnemies){
+                    enemyManager.setCurrentEnemy(enemy);
+                    enemyManager.enemyAttack(enemy, playerInput.getPlayer());
+                }
                 
                 // Jugador muerto = Bucle roto
                 if (playerInput.getPlayer().getHP() <= 0) {
                     break;
                 }
+            }
                 
                 // No quedan enemigos = Salta al siguiente
                 if (!enemyManager.areEnemiesRemaining()) {

@@ -15,7 +15,6 @@ public class Player extends Entity {
     public static int maxDEF = 70;
 
     private ActionStrategy actionStrategy;
-    private EnemyAbstractFactory currentWorld; // Agregar una propiedad para almacenar el mundo actual
 
     public Player() {
         super();

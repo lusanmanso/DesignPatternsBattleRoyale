@@ -6,15 +6,14 @@ import java.util.Scanner;
 import strategy.*;
 import factory.*;
 
-public class PlayerInput {
+public class PlayerManager {
 
     private Scanner scanner;
     private EnemyManager enemyManager;
 
     Player player = new Player();
-    EnemyAbstractFactory enemyAbstractFactory = new SeaAbstractFactory();
 
-    public PlayerInput(EnemyManager enemyManager) {
+    public PlayerManager(EnemyManager enemyManager) {
         this.scanner = new Scanner(System.in);
         this.enemyManager = enemyManager;
     }
