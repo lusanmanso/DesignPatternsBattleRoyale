@@ -3,7 +3,6 @@ package extra;
 import java.util.ArrayList;
 import java.util.List;
 
-import facade.BattleManager;
 import singleton.*;
 import state.*;
 
@@ -11,16 +10,15 @@ import strategy.*;
 import factory.*;
 
 public class EnemyManager {
-
     private World currentWorld;
     private Enemy currentEnemy;
     private List<Enemy> remainingEnemies;
-    private BattleManager battleManager;
+    private EnemyStrategy enemyStrategy;
+    private EntityState entityState;
 
     public EnemyManager(World currentWorld) {
         this.currentWorld = currentWorld;
         this.remainingEnemies = new ArrayList<>();
-        this.battleManager = new BattleManager(this, player);
     }
 
     public List<Enemy> spawnEnemies(World currentWorld, int nEnemies) {
@@ -40,16 +38,20 @@ public class EnemyManager {
                 // Generar un enemigo de forma aleatoria
                 Enemy newEnemy = createRandomEnemy(enemyAbstractFactory);
                 newEnemy.setHP(newEnemy.getMaxHP());
-                remainingEnemies.add(newEnemy); // Agregar el nuevo enemigo a la lista de enemigos restantes  
+                remainingEnemies.add(newEnemy); // Agregar el nuevo enemigo a la lista de enemigos restantes
+             
                 
                 currentEnemy = remainingEnemies.get(0); // Set the first spawned enemy as the current enemy if there wasn't one before
+                
             }
             
             // Generar un enemigo de forma aleatoria
             // Manejar el caso en el que no se haya obtenido la fábrica de enemigos
+
             
-        } else { 
-        
+        }else{
+            
+
             System.out.println("The enemy factory for the current world could not be found.");
 
             // Podrías lanzar una excepción o tomar otra acción apropiada
@@ -108,10 +110,14 @@ public class EnemyManager {
         }
     }
 
+    
     public boolean areEnemiesRemaining() {
 
         return !remainingEnemies.isEmpty();
     }
+
+ 
+    // Otros métodos de la clase...
 
     // Getter y setter para el campo currentWorld
     public World getCurrentWorld() {
@@ -128,11 +134,43 @@ public class EnemyManager {
     }
 
     public void enemyAttack(Enemy enemy, Player player) {
-        battleManager.enemyAttack(enemy, player);
+            double defense = player.getDEF();
+     
+            int pain = calculateDamage(enemy, defense); // Calculate damage based on enemy's ATK and player's DEF
+            player.setHP(player.getHP() - pain); // Apply damage to player's HP directly
+            System.out.println(enemy.getName() + " attacks you for " + pain + " damage! Now you have "+player.getHP()+" HP!");
+        
     }
 
-    public void performEnemyAction(Entity enemy, Player player) {
-        battleManager.performEnemyAction(enemy, player);
+    private int calculateDamage(Enemy enemy, double defense) {
+        // Implement logic to calculate damage based on enemy's ATK and player's DEF
+         // Assuming the player has a defense attribute
+         int pain = (int) (enemy.getATK()  * (1 - defense/ 100.0));
+       // Ensure damage is non-negative
+        return pain;
+    }
+
+    public void performEnemyAction(Enemy enemy, Player player) {
+        // Perform enemy actions, such as attacking the player
+       enemyAttack(enemy, player);
+    }
+
+    public void performEnemyAction(Entity target) {
+        if (currentEnemy != null && enemyStrategy != null) {
+            // Apply state effect based on enemy attack
+
+            int damage = calculateDamage();
+           // entityState.applyEffect(target, damage);
+            
+            enemyStrategy.action(target); // Acción atada a al estrategia            
+            entityState.updateState(target); // Actualiza su estado
+        } else {
+            System.out.println("No current enemy or enemy strategy set.");
+        }
+    }
+
+    private int calculateDamage() {
+        return 0; // Placeholder value
     }
 
 }

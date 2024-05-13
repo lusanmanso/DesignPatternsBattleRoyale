@@ -5,7 +5,7 @@ public class ForestDaemon extends Daemon {
 	public ForestDaemon() {
 		super("Forest Daemon", new FlexibleEnemyStrategy());
         this.getEnemyStrategy().setCurrentEntity(this);
-		this.defBonus(0.2);
+		this.defBonus(10);
 	}
 
 }

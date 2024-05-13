@@ -8,8 +8,8 @@ public abstract class Entity {
 	// Atributos propios
     private int ATK;
     private int HP;
-    public static final int DEFAULT_HP = 30; // común para todos, sus resistencias individuales vienen de su def
-    public static final int DEFAULT_LOWHP = 5;
+    public static final int DEFAULT_HP = 70; // común para todos, sus resistencias individuales vienen de su def
+    public static final int DEFAULT_LOWHP = 40;
     private double DEF; // porcentaje
     private String name;
 
@@ -38,8 +38,6 @@ public abstract class Entity {
         this.poisonedState = new PoisonedState();
         this.injuredState = new InjuredState();
         this.currentState = normalState;
-
-
     }
 
      private ActionStrategy actionStrategy; // Strategy pattern

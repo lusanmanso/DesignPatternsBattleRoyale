@@ -6,7 +6,8 @@ public class FireDaemon extends Daemon {
 	public FireDaemon() {
 		super("Fire Daemon", new HyperAggressiveEnemyStrategy());
         this.getEnemyStrategy().setCurrentEntity(this);
-		this.atkBonus(2);
+		this.atkBonus(10);
+		this.hpBonus(20);
 	}
 
 }

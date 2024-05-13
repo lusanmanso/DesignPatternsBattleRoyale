@@ -6,7 +6,7 @@ public class ForestWitch extends Witch {
     public ForestWitch(){
         super("Forest Witch", new FlexibleEnemyStrategy());
         this.getEnemyStrategy().setCurrentEntity(this);
-        this.defBonus(0.2);
+        this.defBonus(10);
     }
 
 }
