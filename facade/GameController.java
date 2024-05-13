@@ -5,7 +5,6 @@ import java.util.List;
 
 import extra.*;
 import singleton.*;
-import factory.*;
 
 public class GameController {
     private PlayerManager playerInput;
@@ -37,15 +36,16 @@ public class GameController {
             while (playerInput.getPlayer().getHP() > 0 && enemyManager.areEnemiesRemaining()) {
                 playerInput.actionMenu();
 
-                for (Enemy enemy : remainingEnemies){
+                /*for (Enemy enemy : remainingEnemies){
                     enemyManager.setCurrentEnemy(enemy);
                     enemyManager.enemyAttack(enemy, playerInput.getPlayer());
-                }
+                }*/
                 
                 // Jugador muerto = Bucle roto
                 if (playerInput.getPlayer().getHP() <= 0) {
                     break;
                 }
+               
             }
                 
                 // No quedan enemigos = Salta al siguiente
@@ -54,23 +54,24 @@ public class GameController {
                    
                     break;
                 }
-            }
+        
     
             // Check if the player's HP is depleted
-            if (playerInput.getPlayer().getHP() <= 0) {
-                System.out.println("YOU DIED.");
-                break; // End the game if the player loses
-            }
+                if (playerInput.getPlayer().getHP() <= 0) {
+                    System.out.println("YOU DIED.");
+                    break; // End the game if the player loses
+                }
             
             // Check if all worlds are completed
-            if (world == worlds.get(worlds.size() - 1)) {
-                System.out.println("You've completed all the worlds! Congrats!");
-            } else {
-                System.out.println("You've completed the world: " + world.getName() + "! Prepare for the next!");
+                if (world == worlds.get(worlds.size() - 1)) {
+                    System.out.println("You've completed all the worlds! Congrats!");
+                } else {
+                    System.out.println("You've completed the world: " + world.getName() + "! Prepare for the next!");
+                }
+        
             }
-        }
-    
         // Game logic after completing all worlds or if the game has ended
         System.out.println("END OF GAME.");
+
     }
 }
